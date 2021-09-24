@@ -1,0 +1,3 @@
+DEBUG - 2020-09-03 12:18:32,900 - Some message
+ERROR - 2020-09-29 15:28:14,639 - IndexError 발생
+ERROR - 2020-09-29 15:28:22,041 - ValueError 발생
