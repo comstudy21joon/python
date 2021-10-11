@@ -10,4 +10,3 @@ fncList[0]('hello')
 fncList[1]('python')
 fncList[2]('world')
 
-ch06ex16_phoneBook.py
