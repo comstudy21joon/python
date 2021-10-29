@@ -6,7 +6,7 @@ user_name = input("성명을 입력 하세요 >> ")
 # 입력 된 성명을 출력 한다.
 print("%s님 안녕하세요" %user_name)
 # 생년을 입력 받는다.
-birth_year = int(input("생년을 입력 하세요(예: 2002) >> "))
+birth_year = int(input("생년을 입력 하세요(예: 1991) >> "))
 # 현재 날짜를 str_today 변수에 저장한다.
 str_today = str(datetime.date.today())
 # 현재 날짜에서 연도만 추출한다.
