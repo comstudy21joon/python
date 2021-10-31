@@ -18,6 +18,8 @@ elif age < 65 :
 else :
     print("노년입니다.")
 '''
+
+'''
 import time
 
 
@@ -70,7 +72,7 @@ print("정상 주문 완료!")
 '''
 
 
-'''
+"""
 import logging
 
 fish_list = ['오징어','꼴뚜기','대구','명태','거북이']
@@ -97,10 +99,10 @@ while True :
     print("다시 선택", end=" ")
 
 print("정상 주문 완료!")
-'''
-
+"""
 
 import logging
+import time
 
 root_logger= logging.getLogger()
 handler = logging.FileHandler('log_fish_order.txt', 'w', 'utf-8')
@@ -134,7 +136,3 @@ while True :
     print("다시 선택", end=" ")
 
 print("정상 주문 완료!")
-
-
-
-
