@@ -40,6 +40,7 @@ def inputEvtHandler():
         return
 
     insert((name,phone,email))
+    global data_list
     data_list = select_all()
     refreshTreeview(data_list)
 
@@ -71,15 +72,16 @@ def modifyEvtHandler():
         messagebox.showinfo('알림', '이름, 전화번호, 이메일을 모두 입력 하세요!')
         sname.focus()
         return
-
+    print(data_list)
     idx = -1
-    for data in data_list :
+    for i, data in enumerate(data_list) :
         try :
             idx = data.index(sname)
-            update((sname, phone, email, data[0]) )
-            refreshTreeview(select_all())
-            init_entry(sname, phone, email)
-            return
+            if(idx != -1) :
+                update((sname, phone, email, data[0]) )
+                refreshTreeview(select_all())
+                init_entry(sname, phone, email)
+                return
         except :
             pass
 
@@ -235,6 +237,20 @@ lbl_title = Label(topFrame, text="고객 관리 시스템", font=fontStyle)
 lbl_title.place(relx=0.5, rely=0.5, anchor='center')
 #lbl_title.config(background="red")
 
+
+# tree의 행을 클릭하면 정보가 입력 된다.
+def click_item(event) :
+    treeFous = tree.focus()
+    treeItemValue = tree.item(treeFous).get('values')
+    #print(treeItemValue)
+    if len(entry_name.get()) != 0 : entry_name.delete(0,'end')
+    if len(entry_phone.get()) != 0: entry_phone.delete(0, 'end')
+    if len(entry_email.get()) != 0: entry_email.delete(0, 'end')
+    entry_name.insert(0, treeItemValue[1])
+    entry_phone.insert(0, treeItemValue[2])
+    entry_email.insert(0, treeItemValue[3])
+
+tree.bind('<ButtonRelease-1>', click_item)
 
 
 if __name__ == '__main__':

@@ -70,10 +70,10 @@ def modifyEvtHandler():
         return
 
     idx = -1
-    for data in data_list :
+    for i, data in enumerate(data_list) :
         try :
             idx = data.index(sname)
-            data_list[idx] = (data[0], sname, phone, email)
+            data_list[i] = (data[0], sname, phone, email)
             refreshTreeview(data_list)
             return
         except :
@@ -217,6 +217,23 @@ lbl_title.place(relx=0.5, rely=0.5, anchor='center')
 #lbl_title.config(background="red")
 
 
+# tree의 행을 클릭하면 정보가 입력 된다.
+def click_item(event) :
+    treeFous = tree.focus()
+    treeItemValue = tree.item(treeFous).get('values')
+    #print(treeItemValue)
+    if len(entry_name.get()) != 0 : entry_name.delete(0,'end')
+    if len(entry_phone.get()) != 0: entry_phone.delete(0, 'end')
+    if len(entry_email.get()) != 0: entry_email.delete(0, 'end')
+    entry_name.insert(0, treeItemValue[1])
+    entry_phone.insert(0, treeItemValue[2])
+    entry_email.insert(0, treeItemValue[3])
+
+tree.bind('<ButtonRelease-1>', click_item)
+
 
 if __name__ == '__main__':
     win.mainloop()
+
+
+####################### Step04. 목록 만들기 ############################

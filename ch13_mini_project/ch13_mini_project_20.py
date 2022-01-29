@@ -62,6 +62,7 @@ def searchEvtHandler():
     #print(search_data_list)
     refreshTreeview(search_data_list)
 
+
 def modifyEvtHandler():
     print("수정 ...")
     sname = entry_name.get()
@@ -69,16 +70,14 @@ def modifyEvtHandler():
     email = entry_email.get()
     if sname == "" or phone == "" or email == "":
         messagebox.showinfo('알림', '이름, 전화번호, 이메일을 모두 입력 하세요!')
-        sname.focus()
         return
 
     idx = -1
-    for data in data_list :
+    for i, data in enumerate(data_list) :
         try :
             idx = data.index(sname)
-            update((sname, phone, email, data[0]) )
-            refreshTreeview(select_all())
-            init_entry(sname, phone, email)
+            data_list[i] = (data[0], sname, phone, email)
+            refreshTreeview(data_list)
             return
         except :
             pass
@@ -86,8 +85,6 @@ def modifyEvtHandler():
     print(idx)
     if idx == -1 :
         messagebox.showinfo('경고', '찾는 정보가 없습니다!')
-
-
 
 
 def deleteEvtHandler():
@@ -226,7 +223,19 @@ lbl_title = Label(topFrame, text="고객 관리 시스템", font=fontStyle)
 lbl_title.place(relx=0.5, rely=0.5, anchor='center')
 #lbl_title.config(background="red")
 
+# tree의 행을 클릭하면 정보가 입력 된다.
+def click_item(event) :
+    treeFous = tree.focus()
+    treeItemValue = tree.item(treeFous).get('values')
+    #print(treeItemValue)
+    if len(entry_name.get()) != 0 : entry_name.delete(0,'end')
+    if len(entry_phone.get()) != 0: entry_phone.delete(0, 'end')
+    if len(entry_email.get()) != 0: entry_email.delete(0, 'end')
+    entry_name.insert(0, treeItemValue[1])
+    entry_phone.insert(0, treeItemValue[2])
+    entry_email.insert(0, treeItemValue[3])
 
+tree.bind('<ButtonRelease-1>', click_item)
 
 if __name__ == '__main__':
     win.mainloop()

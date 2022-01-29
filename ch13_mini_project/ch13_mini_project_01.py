@@ -78,3 +78,6 @@ lbl_title.place(relx=0.5, rely=0.5, anchor='center')
 
 if __name__ == '__main__':
     win.mainloop()
+
+
+####################### Step02. 입력 Entry 창 만들기 ############################

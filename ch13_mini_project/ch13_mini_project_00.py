@@ -56,3 +56,6 @@ lbl_title.place(relx=0.5, rely=0.5, anchor='center')
 
 if __name__ == '__main__':
     win.mainloop()
+
+
+####################### Step01. 레이아웃 만들기 ############################
